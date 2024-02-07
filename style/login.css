@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+:root{
+    --white: #ffff;
+    --brand-color: #e44c02;
+    --primary-color: #E96A2C;
+    --secondary-color: #ED8856;
+    --accent-color: #F2A681;
+    --backgroud-image: #f1ce8e;
+    --black: #000;
+    --title-color: #D14602;
+    --grey: #3e424b;
+    --lightgrey: #808080;
+    --lightgrey2: #dedede;
+
+    --body-font: 'Quicksand', sans-serif;
+}
+*{
+    margin: 0;
+    padding: 0;
+    font-family: var(--body-font);
+    box-sizing: border-box;
+    scroll-padding-top: 3rem;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+body{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(to top, var(--primary-color), var(--accent-color), var(--backgroud-image));
+}
+.main{
+    width: 350px;
+    height: 450px;
+    background: var(--white);
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 5px 20px 50px var(--grey);
+}
+.main .back{
+    margin: 2%;
+    cursor: pointer;
+}
+.main a .back i{
+    font-size: 2em;
+    border: 2px solid var(--black);
+    border-radius: 50%;
+    color: var(--black);
+}
+
+.main #chk{
+    display: none;
+}
+.main .signup{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.main .signup form > label,
+.main .login form > label{
+    color: var(--black);
+    font-size: 2.3em;
+    justify-content: center;
+    display: flex;
+    margin: 30px 60px 35px 60px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+.main .signup form input,
+.main .login form input{
+    width: 60%;
+    height: 40px;
+    justify-content: center;
+    display: flex;
+    margin: 20px auto;
+    padding: 10px;
+    border: 2px solid var(--lightgrey);
+    border-radius: 5px;
+}
+.main .signup span,
+.main .login span{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.main .signup span input,
+.main .login span input{
+    margin: auto;
+}
+.main .signup span i,
+.main .login span i{
+    position: absolute;
+    right: 5em;
+}
+::placeholder{
+    color: var(--black);
+}
+.main .signup form button,
+.main .login form button{
+    width: 60%;
+    height: 30px;
+    margin: 10px auto;
+    justify-content: center;
+    display: block;
+    color: var(--white);
+    background: var(--black);
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 25px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: .2s ease-in;
+    cursor: pointer;
+}
+button:hover{
+    background-color: var(--grey);
+}
+.main .login{
+    height: auto;
+    background-color: var(--secondary-color);
+    border-radius: 60% / 10%;
+    transform: translateY(-150px);
+    transition: .8s ease-in-out;
+    padding-bottom: 2em;
+}
+.main .login label{
+    color: #000;
+    transform: scale(.6);
+}
+#chk:checked ~ .login{
+    transform: translateY(-520px);
+    background-color: var(--white);
+}
+#chk:checked ~ .signup{
+    transform: translateY(320px);
+}
+#chk:checked ~ .signup{
+    background-color: var(--secondary-color);
+    border-radius: 60% / 10%;
+}
+#chk:checked ~ .login label{
+    transform: scale(1);
+}
+#chk:checked ~ .signup label{
+    transform: scale(.6);
+}
+
