@@ -102,6 +102,7 @@ main .filter p:hover{
 .img-box img{
     display: block;
     margin: auto;
+    aspect-ratio: 1/1;
 }
 .img-box .price{
     font-size: 14px;
