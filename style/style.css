@@ -291,6 +291,9 @@ header ul li:last-child:hover{
 .img-box img{
     display: block;
     margin: auto;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
 }
 .img-box .price{
     font-size: 14px;
