@@ -37,14 +37,37 @@ function sendMessage(){
     })
 }
 
+//section HOME
+fetch("http://localhost:3000/products")
+.then(res => res.json())
+.then(data => renderDataToSlide(data));
 
+function renderDataToSlide(products) {
+    let content = document.getElementById("img-home");
+    let navigation = document.getElementById("navigation");
+    let rate_top = 0;
+    for (product of products) {
+        if (product.rate == 5) {
+            rate_top++;
+            if (rate_top <= 5) {
+                content.innerHTML += `<img id="slide-${rate_top}" src="${product.url_image}" alt="">`;
+                navigation.innerHTML += `<a href="#slide-${rate_top}"></a>`;
+            } else {
+                break; // Stop iterating if 5 images have been added
+            }
+        }
+    }
+}
+
+//section PRODUCTS
 fetch("http://localhost:3000/products")
 .then(res => res.json())
 .then(data => renderDataToContent(data));
 
 function renderDataToContent(products) {
+    const limitedProducts = products.slice(0, 6);
     let content = document.getElementById("products");
-    for (product of products) {
+    for (product of limitedProducts) {
         let starsHTML = '';
         for (let i = 0; i < 5; i++) {
             if (i < product.rate) {
