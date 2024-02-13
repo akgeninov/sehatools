@@ -75,6 +75,9 @@ main .filter p:hover{
     text-decoration: underline;
     cursor: pointer;
 }
+.sort > div#selectedSort p{
+    font-weight: bold;
+}
 
 .products{
     display: flex;
