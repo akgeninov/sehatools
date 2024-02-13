@@ -23,20 +23,6 @@ inputs.forEach((input) => {
     input.addEventListener("blur", blurFunc);
 });
 
-function sendMessage(){
-    var params = {
-        senderName: document.getElementById("name").value,
-        senderEmail: document.getElementById("email").value,
-        senderSubject: document.getElementById("subject").value,
-        senderMessage: document.getElementById("message").value,
-    };
-
-    emailjs.send("service_d8z6tu8","template_czp815b", params)
-    .then(function (res) {
-        alert('Thank You, '+params['senderName']+'! Your message has been sent'+res.status);
-    })
-}
-
 //section HOME
 fetch("http://localhost:3000/products")
 .then(res => res.json())
@@ -53,7 +39,7 @@ function renderDataToSlide(products) {
                 content.innerHTML += `<img id="slide-${rate_top}" src="${product.url_image}" alt="">`;
                 navigation.innerHTML += `<a href="#slide-${rate_top}"></a>`;
             } else {
-                break; // Stop iterating if 5 images have been added
+                break;
             }
         }
     }
@@ -102,12 +88,15 @@ function renderDataToContent(products) {
 }
 
 //section CONTACT
-function sendMessage() {
+function sendMessage(event) {
+    event.preventDefault();
+    console.log('sendMessage');
     // Mengambil nilai dari elemen input
-    const name = document.querySelector("input[name='name']").value;
-    const email = document.querySelector("input[name='email']").value;
-    const subject = document.querySelector("input[name='subject']").value;
-    const message = document.querySelector("textarea[name='message']").value;
+    const form = event.target;
+    const name = form.querySelector("[name='name']").value;
+    const email = form.querySelector("[name='email']").value;
+    const subject = form.querySelector("[name='subject']").value;
+    const message = form.querySelector("[name='message']").value;
   
     // Membentuk objek data
     const data = {
@@ -118,28 +107,29 @@ function sendMessage() {
     };
   
     // Validasi: Memeriksa apakah semua input telah diisi
-    if (name === "" || email === "" || phone === "" || message === "") {
+    if (name === "" || email === "" || subject === "" || message === "") {
       alert("Mohon lengkapi semua form sebelum mengirim pesan.");
       return; // Menghentikan pengiriman jika ada input yang kosong
     }
   
     // Mengirim data ke API
-    fetch("http://localhost:3600/add-contact", {
+    fetch("http://localhost:3000/add-contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
-      .then((responseData) => {
+      .then(res => res.json())
+      .then(data => {
         // Tanggapan dari API dapat digunakan di sini
-        console.log(responseData);
+        console.log(data);
         alert("Pesan Anda berhasil dikirim!");
-        kontakForm.reset();
+        form.reset();
       })
       .catch((error) => {
         console.error("Terjadi kesalahan:", error);
         alert("Terjadi kesalahan saat mengirim pesan.");
       });
   }
+document.querySelector(".form-box form").addEventListener("submit", sendMessage); 

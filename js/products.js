@@ -48,11 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const sortElements = document.querySelectorAll('.sort > div');
     sortElements.forEach(element => {
         element.addEventListener('click', async function () {
-            // Remove 'selected' class from all sort elements
             sortElements.forEach(el => el.removeAttribute('id'));
-
-            // Add 'selected' class to the clicked sort element
-            // element.classList.add('selected');
             element.setAttribute('id', 'selectedSort');
             switch (element.className) {
                 case 'cheapest':
