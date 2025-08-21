@@ -2,7 +2,7 @@
     $host = "localhost";
     $user = "root";
     $pass = "";
-    $db = "yellowStone";
+    $db = "sehatools";
 
     $koneksi = mysqli_connect($host, $user, $pass);
         if($koneksi){

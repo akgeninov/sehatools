@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+:root{
+    --white: #ffff;
+    --brand-color: #023e8a;
+    --primary-color: #0077b6;
+    --secondary-color: #0096c7;
+    --accent-color: #00b4d8;
+    --backgroud-image: #e3f7fc;
+    --black: #000;
+    --title-color: #03045e;
+    --grey: #3e424b;
+    --lightgrey: #808080;
+    --lightgrey2: #dedede;
+    --white: #ffffff;
+
+    --body-font: 'Quicksand', sans-serif;
+}
+*{
+    margin: 0;
+    padding: 0;
+    font-family: var(--body-font);
+    box-sizing: border-box;
+    scroll-padding-top: 3rem;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+body{
+    top: 75px;
+    position: relative;
+    padding: 0 50px;
+}
+*::selection{
+    color: var(--white);
+    background: var(--accent-color);
+}
+section{
+    padding: 70px 10px;
+}
+img{
+    width: 100%;
+}
+header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    box-shadow: 0 4px 41px rgb(14 55 54 / 14%);
+    padding: 15px 5%;
+    transition: 0.2s;
+}
+
+/* style index */
+.logo{
+    display: flex;
+    align-items: center;
+}
+.logo img{
+    width: 150px;
+}
+header .search-nav{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+header .search-bar{
+    display: flex;
+    justify-content: flex-end;
+    margin: auto 0;
+    height: 35px;
+    line-height: 35px;
+    gap: 5px;
+    z-index: 1;
+}
+header .search-bar input{
+    border-width: 0 0 2px 0;
+    border-color: var(--secondary-color);
+    outline: none;
+    height: 100%;
+    padding: 0 10px;
+    font-size: 20px;
+    width: 80%;
+    border-radius: 5px;
+}
+header .search-bar i{
+    color: var(--brand-color);
+    font-size: 20px;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
+}
+header ul{
+    display: grid;
+    list-style: none;
+    align-items: center;
+    grid-template-columns: auto auto auto auto;
+    /* margin: 20px; */
+    gap: 10px;
+}
+header ul a{
+    font-size: 1rem;
+    padding: 11px 20px;
+    color: var(--secondary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    display: grid;
+    text-align: center;
+}
+ul li:not(:last-child) a:hover{
+    font-size: larger;
+    color: var(--title-color);
+    transition: 0.2s;
+}
+header ul li:last-child{
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+}
+header ul li a#login{
+    color: var(--white);
+}
+header ul li:last-child:hover{
+    border: 2px solid var(--grey);
+}
+#menu-icon{
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+    color: var(--title-color);
+    display:none;
+}
+.menu-toggle{
+    display: none;
+    flex-direction: column;
+    height: 20px;
+    justify-content: space-between;
+    position: relative;
+    align-items: flex-end;
+}
+.menu-toggle input{
+    position: absolute;
+    width: 40px;
+    height: 28px;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+.menu-toggle span{
+    display: block;
+    width: 28px;
+    height: 3px;
+    border-radius: 3px;
+    background-color: var(--brand-color);
+    transition: all 0.5s;
+}
+.menu-toggle span:nth-child(2){
+    transform-origin: 0 0;
+}
+.menu-toggle input:checked ~ span:nth-child(2){
+    transform: rotate(45deg) translate(-1px, -1px);
+}
+.menu-toggle span:nth-child(4){
+    transform-origin: 0 100%;
+}
+.menu-toggle input:checked ~ span:nth-child(4){
+    transform: rotate(-45deg) translate(-1px, 0);
+}
+.menu-toggle input:checked ~ span:nth-child(3){
+    transform: scale(0);
+    opacity: 0;
+}
+
+table {
+    width: 100%; /* Memperluas lebar tabel */
+    border-collapse: collapse; /* Menghapus jarak antara sel */
+    margin-top: 20px; /* Margin atas untuk ruang antara elemen sebelumnya */
+}
+
+th {
+    text-align: center;
+    padding: 12px; /* Padding sel */
+    border: 1px solid var(--lightgrey); /* Border abu-abu */
+    background-color: var(--lightgrey2); /* Warna latar belakang untuk header tabel */
+}
+
+td {
+    padding: 12px; /* Padding sel */
+    text-align: left; /* Rata kiri */
+    border: 1px solid var(--lightgrey); /* Border abu-abu */
+    background-color: var(--lightgrey2); /* Warna latar belakang untuk header tabel */
+}
+
+/* Gaya untuk judul */
+h1, h2, h3 {
+    margin: 20px 0; /* Margin atas dan bawah */
+}
+
+/* Gaya untuk form */
+form {
+    background-color: #fff; /* Latar belakang putih untuk form */
+    padding: 20px; /* Padding di dalam form */
+    border-radius: 5px; /* Sudut bulat pada form */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
+}
+
+label {
+    display: block; /* Menampilkan label sebagai blok untuk baris baru */
+    margin-bottom: 8px; /* Margin bawah untuk jarak antara label dan input */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+    width: 100%; /* Lebar penuh untuk input */
+    padding: 10px; /* Padding di dalam input */
+    border: 1px solid #ccc; /* Border abu-abu */
+    border-radius: 5px; /* Sudut bulat */
+    margin-bottom: 20px; /* Margin bawah untuk jarak antara input */
+}
+
+button[type="submit"] {
+    background-color: #4CAF50; /* Warna hijau untuk tombol */
+    color: white; /* Warna teks putih */
+    padding: 10px 15px; /* Padding di dalam tombol */
+    border: none; /* Tanpa border */
+    border-radius: 5px; /* Sudut bulat */
+    cursor: pointer; /* Pointer saat hover */
+    transition: background 0.3s; /* Transisi saat hover */
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049; /* Warna lebih gelap saat hover */
+}

@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+:root{
+    --white: #ffff;
+    --brand-color: #023e8a;
+    --primary-color: #0077b6;
+    --secondary-color: #0096c7;
+    --accent-color: #00b4d8;
+    --backgroud-image: #e3f7fc;
+    --black: #000;
+    --title-color: #03045e;
+    --grey: #3e424b;
+    --lightgrey: #808080;
+    --lightgrey2: #dedede;
+    --white: #ffffff;
+
+    --body-font: 'Quicksand', sans-serif;
+}
+*{
+    margin: 0;
+    padding: 0;
+    font-family: var(--body-font);
+    box-sizing: border-box;
+    scroll-padding-top: 3rem;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+body{
+    top: 75px;
+    position: relative;
+    margin: 0;
+    padding-bottom: 60px;
+}
+*::selection{
+    color: var(--white);
+    background: var(--accent-color);
+}
+section{
+    padding: 70px 10px;
+}
+img{
+    width: 100%;
+}
+header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    box-shadow: 0 4px 41px rgb(14 55 54 / 14%);
+    padding: 15px 5%;
+    transition: 0.2s;
+}
+
+/* style index */
+.logo{
+    display: flex;
+    align-items: center;
+}
+.logo img{
+    width: 150px;
+}
+header .search-nav{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+header .search-bar{
+    display: flex;
+    justify-content: flex-end;
+    margin: auto 0;
+    height: 35px;
+    line-height: 35px;
+    gap: 5px;
+    z-index: 1;
+}
+header .search-bar input{
+    border-width: 0 0 2px 0;
+    border-color: var(--secondary-color);
+    outline: none;
+    height: 100%;
+    padding: 0 10px;
+    font-size: 20px;
+    width: 80%;
+    border-radius: 5px;
+}
+header .search-bar i{
+    color: var(--brand-color);
+    font-size: 20px;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
+}
+header ul{
+    display: grid;
+    list-style: none;
+    align-items: center;
+    grid-template-columns: auto auto auto auto;
+    /* margin: 20px; */
+    gap: 10px;
+}
+header ul a{
+    font-size: 1rem;
+    padding: 11px 20px;
+    color: var(--secondary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    display: grid;
+    text-align: center;
+}
+ul li a:hover{
+    font-size: larger;
+    color: var(--title-color);
+    transition: 0.2s;
+}
+/* ul li:not(:last-child) a:hover{
+    font-size: larger;
+    color: var(--title-color);
+    transition: 0.2s;
+} */
+/* header ul li:last-child{
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+} */
+header ul li a#login{
+    color: var(--white);
+}
+/* header ul li:last-child:hover{
+    border: 2px solid var(--grey);
+} */
+#menu-icon{
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+    color: var(--title-color);
+    display:none;
+}
+.menu-toggle{
+    display: none;
+    flex-direction: column;
+    height: 20px;
+    justify-content: space-between;
+    position: relative;
+    align-items: flex-end;
+}
+.menu-toggle input{
+    position: absolute;
+    width: 40px;
+    height: 28px;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+.menu-toggle span{
+    display: block;
+    width: 28px;
+    height: 3px;
+    border-radius: 3px;
+    background-color: var(--brand-color);
+    transition: all 0.5s;
+}
+.menu-toggle span:nth-child(2){
+    transform-origin: 0 0;
+}
+.menu-toggle input:checked ~ span:nth-child(2){
+    transform: rotate(45deg) translate(-1px, -1px);
+}
+.menu-toggle span:nth-child(4){
+    transform-origin: 0 100%;
+}
+.menu-toggle input:checked ~ span:nth-child(4){
+    transform: rotate(-45deg) translate(-1px, 0);
+}
+.menu-toggle input:checked ~ span:nth-child(3){
+    transform: scale(0);
+    opacity: 0;
+}
+
+/* Style dasar untuk tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+/* Style setiap baris tabel */
+table tr {
+    background-color: #ffffff; /* Background putih pada setiap baris */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Efek hover dengan bayangan */
+table tr:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Efek bayangan saat hover */
+    transform: scale(1.02); /* Sedikit perbesaran untuk efek mengangkat */
+}
+
+/* Style untuk setiap sel tabel */
+table td, table th {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e0e0e0; /* Garis bawah antar baris */
+    text-align: center;
+}
+table td.name-product{
+    text-align: left;
+}
+.select {
+    padding: 35px 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+.select .product-select {
+    transform: scale(1.5); /* Atur skala sesuai ukuran yang diinginkan */
+    margin: 0 5px; /* Tambahkan margin agar posisinya seimbang */
+}
+
+.quantity-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 30px 0px;
+}
+
+.quantity-controls button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    position: relative;
+}
+
+.quantity {
+    min-width: 30px;
+    text-align: center;
+}
+
+#total-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    padding-left: 40px;
+}
+
+#total-container span {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#buy-now {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 20px;
+}
+
+#buy-now:hover {
+    background-color: var(--secondary-color);
+}
+
+#buy-now:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+.empty-cart-message {
+    font-size: 1.2em;
+    color: #ff0000;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ff0000;
+    margin-top: 50px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    background-color: #ffe6e6;
+}
+.button {
+    display: flex;
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: var(--black);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    border-style: solid;
+    border-color: var(--lightgrey2);
+    width: fit-content;
+    text-align: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+
+
+
+
+

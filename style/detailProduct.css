@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+:root{
+    --white: #ffff;
+    --brand-color: #023e8a;
+    --primary-color: #0077b6;
+    --secondary-color: #0096c7;
+    --accent-color: #00b4d8;
+    --backgroud-image: #e3f7fc;
+    --black: #000;
+    --title-color: #03045e;
+    --grey: #3e424b;
+    --lightgrey: #808080;
+    --lightgrey2: #dedede;
+    --white: #ffffff;
+
+    --body-font: 'Quicksand', sans-serif;
+}
+*{
+    margin: 0;
+    padding: 0;
+    font-family: var(--body-font);
+    box-sizing: border-box;
+    scroll-padding-top: 3rem;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+*::selection{
+    color: var(--white);
+    background: var(--accent-color);
+}
+section{
+    padding: 50px 10px;
+}
+img{
+    width: 100%;
+}
+header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    box-shadow: 0 4px 41px rgb(14 55 54 / 14%);
+    padding: 15px 5%;
+    transition: 0.2s;
+}
+
+/* style detail product */
+.nav-details{
+    display: flex;
+}
+.nav-details a{
+    padding: 11px 20px;
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+.prod{
+    /* width: 100%; */
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    /* background: var(--backgroud-image); */
+    gap: 1rem;
+    padding: 36px 10%;
+}
+.img-prod{
+    flex: 1 1 0px;
+    margin-top: 70px;
+    position:relative;
+}
+.images{
+    display: flex;
+    aspect-ratio: 1/1;
+    box-shadow: 0 1.5rem 3rem 0.75rem hsla(0, 0%, 0%, 0.25);
+    border-radius: 5px;
+    margin-bottom: 12px;
+}
+.images img{
+    display: block;
+}
+.img-prod .price-star span{
+    font-size: 28px;
+    color: var(--primary-color);
+}
+.img-prod .price-star span i{
+    font-size: 18px;
+}
+.hover-prod{
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: 0.6s;
+    border-radius: 5px;
+    aspect-ratio: 1/1;
+    font-size: 65px;
+}
+.hover-prod i{
+    color: var(--white);
+}
+.hover-prod:hover{
+    opacity: 1;
+}
+.price-star-button {
+    display: flex; /* Menggunakan Flexbox untuk tata letak */
+    justify-content: space-between; /* Membuat ruang antara elemen */
+    align-items: center; /* Menyelaraskan elemen secara vertikal */
+}
+
+.price-star {
+    display: flex; /* Membuat konten dalam price-star juga dalam flex */
+    flex-direction: column; /* Menyusun konten secara vertikal */
+    margin-right: 20px; /* Memberikan jarak antara price-star dan button-shop */
+}
+
+.stars {
+    display: flex; /* Menggunakan flex untuk menampilkan bintang dalam baris */
+    margin-top: 5px; /* Memberikan jarak antara harga dan bintang */
+}
+
+.button-shop {
+    display: flex; /* Menyusun tombol dalam baris */
+    gap: 10px; /* Memberikan jarak antara tombol */
+}
+
+.button, .cart {
+    padding: 8px 12px; /* Menambahkan padding pada tombol */
+    background-color: #007bff; /* Warna latar belakang tombol */
+    color: white; /* Warna teks tombol */
+    border: none; /* Menghilangkan border */
+    border-radius: 4px; /* Membuat sudut tombol melengkung */
+    text-decoration: none; /* Menghilangkan garis bawah */
+    transition: background-color 0.3s; /* Animasi transisi warna latar belakang */
+}
+
+.button:hover, .cart:hover {
+    background-color: #0056b3; /* Warna latar belakang saat hover */
+}
+
+.text-prod{
+    flex: 1 1 10rem;
+    margin-top: 70px;
+}
+.text-prod h1{
+    text-align: center;
+    font-size: 23px;
+}
+.desc{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 8px;
+    /* padding: 15px 10%; */
+    color: var(--grey);
+    margin-top: 10px;
+}
+.about-prod,.useful,.storage{
+    flex: 1 1 auto;
+    background-color: var(--white);
+    box-shadow: 0px 0rem 4rem 0rem hsla(0, 0%, 0%, 0.1);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.cart-shop{
+    position: fixed;
+    bottom: 2.5em;
+    right: 4em; 
+    z-index: 1;
+    color: var(--white);
+    /* position: relative;  */
+    display: inline-block; /* Agar sesuai dengan ikon */
+}
+.cart-shop i{
+    padding: 50%;
+    /* border: 2px solid var(--primary-color); */
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    font-size: 1.5em;
+    box-shadow: 1px 1px 20px 3px rgb(1 1 1 / 68%);
+}
+.cart-shop:hover{
+    cursor: pointer;
+}
+
+.cart-shop {
+    
+}
+
+#cart-count {
+    position: absolute;
+    top: -25px; /* Sesuaikan ini untuk mengatur posisi vertikal */
+    right: -25px; /* Sesuaikan ini untuk mengatur posisi horizontal */
+    background-color: red; /* Warna latar belakang untuk badge */
+    color: white; /* Warna teks untuk badge */
+    border-radius: 50%; /* Membuatnya bulat */
+    padding: 5px 8px; /* Mengatur ukuran badge */
+    font-size: 12px; /* Ukuran teks badge */
+    font-weight: bold; /* Teks lebih tebal */
+    display: inline-block; /* Supaya elemen badge sesuai dengan kontennya */
+    min-width: 20px; /* Minimum lebar supaya tetap bulat meskipun satu digit */
+    text-align: center; /* Supaya teks berada di tengah */
+    line-height: 1; /* Mengatur tinggi garis supaya angka terlihat rapi */
+}
