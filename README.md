@@ -45,5 +45,3 @@ Project ini dikembangkan sebagai bagian dari **sertifikasi Uji Kompetensi Junior
 - **Tools:** XAMPP, phpMyAdmin, Git  
 - **Email Service:** PHPMailer  
 
-
-   git clone https://github.com/username/sehatools.git
