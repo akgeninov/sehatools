@@ -396,6 +396,15 @@ th {
     color: #c0392b;
 }
 
+.icon-action.disabled i{
+    color: #959595;  
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+.icon-action.disabled i:hover {
+    color: #959595;
+}
+
 /* Gaya dasar untuk form */
 form {
     padding: 20px;

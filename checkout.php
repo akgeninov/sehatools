@@ -48,7 +48,7 @@ $formattedTotalPrice = number_format($totalPrice, 0, ',', '.');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/shortcut.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="style/checkout.css">
+    <link rel="stylesheet" href="style/checkou.css">
     <title>sehatools</title>
 </head>
 <body>
@@ -62,7 +62,7 @@ $formattedTotalPrice = number_format($totalPrice, 0, ',', '.');
             <ul>
                 <li><a class="nav" href="#product">Produk</a></li>
                 <li><a class="nav" href="#contact">Kontak</a></li>
-                <li><a id="login" class="nav" href="./admin/start.php">Login sebagai Admin</a></li>
+                <!-- <li><a id="login" class="nav" href="./admin/start.php">Login sebagai Admin</a></li> -->
             </ul>
             <div class="menu-toggle">
                 <input type="checkbox" name="" id="">

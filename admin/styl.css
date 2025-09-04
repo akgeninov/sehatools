@@ -19,12 +19,17 @@
     background-size: cover;
     background-position: center;
     position: absolute;
+    display: flex;
+    flex-direction: column;   
+    justify-content: center;  
+    align-items: center;      
+    min-height: 100vh;        
+    text-align: center; 
 }
 .form-box{
-    width: 380px;
-    height: 480px;
+    width: 400px;
+    height: 400px;
     position: relative;
-    margin: 6% auto;
     background: var(--white);
     padding: 5px;
     border-color: var(--blue);
@@ -39,33 +44,49 @@ h2{
     text-shadow: 2px 0px 10px var(--blue);
 }
 .button-box{
-    width: 210px;
-    margin: 35px auto;
     position: relative;
-    border-radius: 30px;
-    border-color: var(--blue);
-    border-style:solid;
+    display: flex;
+    justify-content: space-around;
+}
+.button-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;            /* tepat di tengah */
+    width: 2px;           /* tebal garis */
+    background: var(--blue);
+    transform: translateX(-50%);
 }
 .toggle-btn{
-    padding: 10px 30px;
-    background: transparent;
-    border: 0;
-    outline: none;
-    position: relative;
+    flex: 1;
+    padding: 12px;
+    background: var(--white);
+    border: 2px solid var(--blue);
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--blue2);
     cursor: pointer;
+    transition: 0.3s;
 }
-#btn{
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: 100px;
-    height: 100%;
-    background: var(--blue);
-    border-radius: 30px;
-    transition: .5s;
+.toggle-btn:first-child {
+    border-left: 2px solid var(--blue); 
+    border-radius: 15px 0 0 0; 
+}
+
+.toggle-btn:last-child {
+    border-radius: 0 10px 0 0; 
+}
+.toggle-btn:hover {
+    background: var(--blue3);
+}
+
+.toggle-btn.active {
+    background: var(--blue) !important;
+    color: var(--white) !important;
 }
 .input-group{
-    top: 167px;
+    top: 90px;
     position: absolute;
     width: 280px;
     transition: .5s;
@@ -99,7 +120,6 @@ a{
 }
 #masuk span{
     position: absolute;
-    
 }
 #daftar{
     left: 450px;

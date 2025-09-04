@@ -9,23 +9,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styl.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="../images/shortcut.png">
     <title>Login</title>
 </head>
 <body>
     <div class="hero">
+        <h2>ADMIN</h2>
         <div class="form-box">
-            <h2>ADMIN</h2>
             <div class="button-box">
-                <div id="btn"></div>
-                <button type="button" class="toggle-btn" onclick="masuk()">Masuk</button>
+                <!-- <div id="btn"></div> -->
+                <button type="button" class="toggle-btn active" onclick="masuk()">Masuk</button>
                 <button type="button" class="toggle-btn" onclick="daftar()">Daftar</button>
             </div>
             <form method="post" id="masuk" class="input-group">
                 <input type="text" name="in-username" class="kolom" placeholder="Username" required>
                 <input type="password" name="in-password" class="kolom" placeholder="Password" required>
-                <span><i class="fa-solid fa-eye"></i></span>
+                <!-- <span><i class="fa-solid fa-eye"></i></span> -->
                 <button type="submit" class="submit" name="btn-masuk">Masuk</button>
             </form>
             <form id="daftar" method="POST" action="" class="input-group">
@@ -41,17 +42,20 @@
     <script>
         var x = document.getElementById("masuk");
         var y = document.getElementById("daftar");
-        var z = document.getElementById("btn");
 
         function daftar(){
             x.style.left = "-400px";
             y.style.left = "50px";
-            z.style.left = "110px";
+
+            document.querySelectorAll(".toggle-btn").forEach(btn => btn.classList.remove("active"));
+  document.querySelector(".toggle-btn:nth-child(2)").classList.add("active");
         }
         function masuk(){
             x.style.left = "50px";
             y.style.left = "450px";
-            z.style.left = "0px";
+
+             document.querySelectorAll(".toggle-btn").forEach(btn => btn.classList.remove("active"));
+  document.querySelector(".toggle-btn:nth-child(1)").classList.add("active");
         }
     </script>
             <?php
@@ -81,7 +85,7 @@
                         echo "<script> alert('Konfirmasi password tidak sesuai') </script>";
                     } else {
                         $password = password_hash($_POST['re-password'], PASSWORD_DEFAULT);
-                        $query = mysqli_query($koneksi, "INSERT INTO admin VALUES('', '$name', '$email', '$username', '$password')");
+                        $query = mysqli_query($koneksi, "INSERT INTO admin VALUES('', '$name', '$email', '$username', '$password', '$password2')");
                         if($query){
                             echo "<script> alert('Berhasil daftar') </script>";
                         }

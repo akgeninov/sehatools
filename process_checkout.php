@@ -168,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <!-- <li><a class="nav" href="#aboutus">About Us</a></li> -->
                 <li><a class="nav" href="order_histor.php">Lihat Pesanan</a></li>
                 <li><a class="nav" href="#contact">Kontak</a></li>
-                <li><a id="login" class="nav" href="./admin/start.php">Login sebagai Admin</a></li>
+                <!-- <li><a id="login" class="nav" href="./admin/start.php">Login sebagai Admin</a></li> -->
             </ul>
             <div class="menu-toggle">
                 <input type="checkbox" name="" id="">

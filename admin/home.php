@@ -1,5 +1,6 @@
 <?php 
     include "../connect/connection.php";
+    include "auth.php";
     $data_produk = mysqli_query($koneksi, "SELECT * FROM products");
     $data_pelanggan = mysqli_query($koneksi, "SELECT * FROM customers");
     $data_admin = mysqli_query($koneksi, "SELECT * FROM admin");
@@ -346,6 +347,10 @@
                                 family: 'Quicksand, sans-serif',
                                 size: 14
                             }
+                        },
+                        ticks: {
+                            maxRotation: 45,
+                            minRotation: 45
                         }
                     },
                     y: {
@@ -413,6 +418,10 @@
                                 family: 'Quicksand, sans-serif',
                                 size: 14
                             }
+                        },
+                        ticks: {
+                            maxRotation: 30,
+                            minRotation: 30
                         }
                     },
                     y: {
