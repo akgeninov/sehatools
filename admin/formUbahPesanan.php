@@ -3,6 +3,13 @@ include "../connect/connection.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Dotenv\Dotenv;
+
+require '/vendor/autoload.php';
+
+// Load .env
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require '../vendor/phpmailer/phpmailer/src/SMTP.php';
@@ -91,14 +98,14 @@ function sendEmailStatus($to, $nama, $order_number, $status, $payment_method, $t
     $mail = new PHPMailer(true);
     try {
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = $_ENV['SMTP_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Username = 'sehatools@gmail.com';
-        $mail->Password = 'keav xohf nzeu ifvs';
+        $mail->Username = $_ENV['SMTP_USER'];
+        $mail->Password = $_ENV['SMTP_PASS'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+        $mail->Port = (int) $_ENV['SMTP_PORT'];
 
-        $mail->setFrom('sehatools@gmail.com', 'SEHATOOLS');
+        $mail->setFrom($_ENV['SMTP_USER'], 'SEHATOOLS');
         $mail->addAddress($to, $nama);
 
         $mail->isHTML(true);
@@ -187,15 +194,15 @@ function sendEmailWithInvoice($to, $order_number, $data, $koneksi)
     try {
         // Konfigurasi server
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = $_ENV['SMTP_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Username = 'sehatools@gmail.com';  // Ganti dengan email Anda
-        $mail->Password = 'keav xohf nzeu ifvs';  // Ganti dengan password Anda
+        $mail->Username = $_ENV['SMTP_USER'];  // Ganti dengan email Anda
+        $mail->Password = $_ENV['SMTP_PASS'];  // Ganti dengan password Anda
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+        $mail->Port = (int) $_ENV['SMTP_PORT'];
 
         // Pengaturan penerima
-        $mail->setFrom('sehatools@gmail.com', 'SEHATOOLS'); // Ganti dengan nama Anda
+        $mail->setFrom($_ENV['SMTP_USER'], 'SEHATOOLS');
         $mail->addAddress($to); // Tambahkan penerima
 
         // Konten email

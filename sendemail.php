@@ -1,11 +1,19 @@
 <?php
+use Dotenv\Dotenv;
+
+require '/vendor/autoload.php';
+
+// Load .env
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = htmlspecialchars($_POST['name']);
     $email = htmlspecialchars($_POST['email']);
     $subject = htmlspecialchars($_POST['subject']);
     $message = htmlspecialchars($_POST['message']);
 
-    $to = "sehatools@gmail.com";
+    $to = $_ENV['SMTP_USER'];
     $headers = "From: $email" . "\r\n" .
                "Reply-To: $email" . "\r\n" .
                "X-Mailer: PHP/" . phpversion();

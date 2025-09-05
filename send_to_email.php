@@ -1,21 +1,26 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Dotenv\Dotenv;
 
-require './vendor/autoload.php';
+require '/vendor/autoload.php';
+
+// Load .env
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 function sendInvoiceEmail($email, $invoicePath, $orderNumber) {
     $mail = new PHPMailer(true);
     try {
         $mail->isSMTP();
-        $mail->Host = 'smtp.example.com';
+        $mail->Host = $_ENV['SMTP_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Username = 'sehatools@gmail.com';
-        $mail->Password = 'keav xohf nzeu ifvs';
+        $mail->Username = $_ENV['SMTP_USER'];
+        $mail->Password = $_ENV['SMTP_PASS'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+        $mail->Port = (int) $_ENV['SMTP_PORT'];
 
-        $mail->setFrom('sehatools@gmail.com', 'SEHATOOLS');
+        $mail->setFrom($_ENV['SMTP_USER'], 'SEHATOOLS');
         $mail->addAddress($email);
         $mail->addAttachment($invoicePath);
 

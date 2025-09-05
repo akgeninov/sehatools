@@ -1,6 +1,11 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Dotenv\Dotenv;
+
+require __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 require './vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require './vendor/phpmailer/phpmailer/src/SMTP.php';
@@ -84,15 +89,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             try {
                 // Konfigurasi SMTP
                 $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
+                $mail->Host = $_ENV['SMTP_HOST'];
                 $mail->SMTPAuth = true;
-                $mail->Username = 'sehatools@gmail.com';  // Ganti dengan email Anda
-                $mail->Password = 'keav xohf nzeu ifvs';  // Ganti dengan password Anda
+                $mail->Username = $_ENV['SMTP_USER'];  // Ganti dengan email Anda
+                $mail->Password = $_ENV['SMTP_PASS'];  // Ganti dengan password Anda
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
+                $mail->Port = (int) $_ENV['SMTP_PORT'];
 
                 // Pengaturan Email
-                $mail->setFrom('sehatools@gmail.com', 'SEHATOOLS'); // Ganti dengan email dan nama pengirim
+                $mail->setFrom($_ENV['SMTP_USER'], 'SEHATOOLS');
                 $mail->addAddress($email, $nama); // Kirim ke email pelanggan
 
                 $mail->isHTML(true);
