@@ -264,3 +264,39 @@ footer span.proj{
     right: 10px;
     font-size: smaller;
 }
+.cart-shop{
+    position: fixed;
+    bottom: 2.5em;
+    right: 4em; 
+    z-index: 1;
+    color: var(--white);
+    /* position: relative;  */
+    display: inline-block; /* Agar sesuai dengan ikon */
+}
+.cart-shop i{
+    padding: 50%;
+    /* border: 2px solid var(--primary-color); */
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    font-size: 1.5em;
+    box-shadow: 1px 1px 20px 3px rgb(1 1 1 / 68%);
+}
+.cart-shop:hover{
+    cursor: pointer;
+}
+
+#cart-count {
+    position: absolute;
+    top: -25px; /* Sesuaikan ini untuk mengatur posisi vertikal */
+    right: -25px; /* Sesuaikan ini untuk mengatur posisi horizontal */
+    background-color: red; /* Warna latar belakang untuk badge */
+    color: white; /* Warna teks untuk badge */
+    border-radius: 50%; /* Membuatnya bulat */
+    padding: 5px 8px; /* Mengatur ukuran badge */
+    font-size: 12px; /* Ukuran teks badge */
+    font-weight: bold; /* Teks lebih tebal */
+    display: inline-block; /* Supaya elemen badge sesuai dengan kontennya */
+    min-width: 20px; /* Minimum lebar supaya tetap bulat meskipun satu digit */
+    text-align: center; /* Supaya teks berada di tengah */
+    line-height: 1; /* Mengatur tinggi garis supaya angka terlihat rapi */
+}
