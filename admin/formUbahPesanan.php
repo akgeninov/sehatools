@@ -5,19 +5,12 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use Dotenv\Dotenv;
 
-require '../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php'; // Autoload semua library Composer
+require __DIR__ . '/./fpdf186/fpdf.php';   // FPDF manual
 
 // Load .env
 $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
-
-require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require '../vendor/phpmailer/phpmailer/src/SMTP.php';
-require '../vendor/phpmailer/phpmailer/src/Exception.php';
-
-require '../vendor/autoload.php';
-
-require 'fpdf186/fpdf.php';
 
 $data_admin = mysqli_query($koneksi, "SELECT * FROM admin");
 $dataAdmin = mysqli_fetch_assoc($data_admin);

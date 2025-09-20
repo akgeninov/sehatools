@@ -1,7 +1,18 @@
 {
+    "name": "acer/sehatools-pelanggan",
+    "autoload": {
+        "psr-4": {
+            "Acer\\SehatoolsPelanggan\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "akgeninov",
+            "email": "akgeninov@gmail.com"
+        }
+    ],
     "require": {
-        "phpmailer/phpmailer": "^6.9",
-        "fpdf/fpdf": "^1.86",
-        "vlucas/phpdotenv": "^5.6"
+        "vlucas/phpdotenv": "^5.6",
+        "phpmailer/phpmailer": "^6.10"
     }
 }
