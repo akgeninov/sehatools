@@ -84,8 +84,8 @@
                     if($password !== $password2){
                         echo "<script> alert('Konfirmasi password tidak sesuai') </script>";
                     } else {
-                        $password = password_hash($_POST['re-password'], PASSWORD_DEFAULT);
-                        $query = mysqli_query($koneksi, "INSERT INTO admin VALUES('', '$name', '$email', '$username', '$password', '$password2')");
+                        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+                        $query = mysqli_query($koneksi, "INSERT INTO admin VALUES('', '$name', '$email', '$username', '$passwordHash')");
                         if($query){
                             echo "<script> alert('Berhasil daftar') </script>";
                         }

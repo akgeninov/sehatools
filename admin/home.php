@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     include "../connect/connection.php";
     include "auth.php";
     $data_produk = mysqli_query($koneksi, "SELECT * FROM products");
@@ -12,7 +13,9 @@
     $jml_kategori = mysqli_num_rows($data_kategori);
     $jml_penjualan = mysqli_num_rows($data_penjualan);
 
-    $data = mysqli_fetch_assoc($data_admin);
+    $username = $_SESSION['userweb'];
+    $query_admin = mysqli_query($koneksi, "SELECT * FROM admin WHERE username = '$username'");
+    $data = mysqli_fetch_assoc($query_admin);
 
     $query_grafik = "
         SELECT od.id_product, COUNT(*) AS jumlah_beli, p.name_product
@@ -43,7 +46,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="hom.css">
+    <link rel="stylesheet" href="ho.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"/>

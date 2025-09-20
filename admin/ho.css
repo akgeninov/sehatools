@@ -350,6 +350,7 @@ th {
     background-color: var(--blue);
     color: var(--white);
     font-weight: bold;
+    z-index: 99;
 }
 
 .table-wrapper tr:nth-child(even) {

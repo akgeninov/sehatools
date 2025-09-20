@@ -5,8 +5,16 @@ $data_admin = mysqli_query($koneksi, "SELECT * FROM admin");
 $data = mysqli_fetch_assoc($data_admin);
 
 if (isset($_GET['kode']) && $_GET['aksi'] == "hapus") {
-    mysqli_query($koneksi, "DELETE FROM orderdetails WHERE orderNumber = '$_GET[kode]'");
-    header("Location: tampilOrder.php");
+    $id = intval($_GET['kode']);
+
+    // Hapus dulu detail pesanan
+    mysqli_query($koneksi, "DELETE FROM orderdetails WHERE id_order = $id");
+
+    // Baru hapus pesanan utama
+    mysqli_query($koneksi, "DELETE FROM orders WHERE id_order = $id");
+
+    header("Location: ubahOrder.php");
+    exit;
 }
 ?>
 
@@ -20,7 +28,27 @@ if (isset($_GET['kode']) && $_GET['aksi'] == "hapus") {
     <title>Halaman Utama</title>
     <link rel="stylesheet" href="ho.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        .produk-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            color: black;
+        }
+
+        .produk-table th,
+        .produk-table td {
+            border: 1px solid #ccc;
+            padding: 4px 6px;
+            text-align: left;
+        }
+
+        .produk-table th {
+            background: #f4f4f4;
+            color: black;
+            position: static;
+        }
+    </style>
 </head>
 
 <body>
@@ -111,6 +139,7 @@ if (isset($_GET['kode']) && $_GET['aksi'] == "hapus") {
                                 <th>Status</th>
                                 <th>Nomor Pesanan</th>
                                 <th>Kode Unik</th>
+                                <th>Detail Produk</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -119,7 +148,7 @@ if (isset($_GET['kode']) && $_GET['aksi'] == "hapus") {
                             $ambil = mysqli_query($koneksi, "SELECT * FROM orders");
                             while ($tampil = mysqli_fetch_array($ambil)) {
 
-                                // Cek status
+                                // tombol edit/hapus
                                 if (strtolower($tampil['status']) == "selesai") {
                                     $editBtn = "<span class='icon-action disabled'><i class='fa-solid fa-pen-to-square'></i></span>";
                                     $hapusBtn = "<span class='icon-action disabled'><i class='fa-solid fa-trash'></i></span>";
@@ -133,6 +162,37 @@ if (isset($_GET['kode']) && $_GET['aksi'] == "hapus") {
                                                 </a>";
                                     $rowClass = "";
                                 }
+
+                                // ambil detail produk
+                                $detailQ = mysqli_query($koneksi, "SELECT p.name_product, p.price, od.amount, (p.price * od.amount) AS subtotal 
+                                                                 FROM orderdetails od 
+                                                                 JOIN products p ON od.id_product = p.id_product 
+                                                                 WHERE od.id_order = {$tampil['id_order']}");
+                                if(mysqli_num_rows($detailQ) > 0){
+                                    $produkList = "<table class='produk-table'>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Produk</th>
+                                                        <th>Harga</th>
+                                                        <th>Jumlah</th>
+                                                        <th>Subtotal</th>
+                                                    </tr>";
+                                $prodNo = 1;
+                                while ($d = mysqli_fetch_assoc($detailQ)) {
+                                    $produkList .= "<tr>
+                                                        <td>{$prodNo}</td>
+                                                        <td>{$d['name_product']}</td>
+                                                        <td>{$d['price']}</td>
+                                                        <td>{$d['amount']}</td>
+                                                        <td>{$d['subtotal']}</td>
+                                                    </tr>";
+                                    $prodNo++;
+                                }
+                                $produkList .= "</table>";
+                                } else {
+                                    $produkList = "<em>Tidak ada produk</em>";
+                                }
+                                
                                 echo "
                                     <tr $rowClass>
                                         <td>$editBtn</td>
@@ -145,17 +205,19 @@ if (isset($_GET['kode']) && $_GET['aksi'] == "hapus") {
                                         <td>$tampil[status]</td>
                                         <td>$tampil[order_number]</td>
                                         <td>$tampil[unique_code]</td>
+                                        <td>$produkList</td>
                                     </tr>";
                                 $no++;
-                                }
+                            }
                             ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+</body>
 
-        <script>
+<script>
             // JavaScript untuk toggle dropdown dan rotasi ikon
             document.querySelector('.chevron-toggle').addEventListener('click', function() {
                 const dropdown = document.querySelector('.dropdown-menu');
@@ -217,6 +279,5 @@ if (isset($_GET['kode']) && $_GET['aksi'] == "hapus") {
                 }
             });
         </script>
-</body>
 
 </html>

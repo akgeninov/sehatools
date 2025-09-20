@@ -1,5 +1,4 @@
 <?php
-session_start();
 if (!isset($_SESSION['userweb'])) {
     // kalau belum login, paksa balik ke login
     echo "<script>
