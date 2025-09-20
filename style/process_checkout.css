@@ -112,21 +112,21 @@ header ul a{
     display: grid;
     text-align: center;
 }
-ul li:not(:last-child) a:hover{
+ul li a:hover{
     font-size: larger;
     color: var(--title-color);
     transition: 0.2s;
 }
-header ul li:last-child{
+/* header ul li:last-child{
     background-color: var(--secondary-color);
     border-radius: 5px;
-}
+} */
 header ul li a#login{
     color: var(--white);
 }
-header ul li:last-child:hover{
+/* header ul li:last-child:hover{
     border: 2px solid var(--grey);
-}
+} */
 #menu-icon{
     font-size: 24px;
     cursor: pointer;

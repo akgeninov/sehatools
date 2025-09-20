@@ -1,4 +1,5 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use Dotenv\Dotenv;
@@ -33,10 +34,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $metode_pembayaran = $_POST['payment_method'];
 
     // Ambil produk yang dipilih dari sesi
-    $selectedProducts = $_SESSION['selected_products'];
+    if (isset($_SESSION['selected_products']) && is_array($_SESSION['selected_products'])) {
+        $selectedProducts = $_SESSION['selected_products'];
+    } else {
+        $selectedProducts = [];
+    }
+
+    // Kalau kosong, hentikan proses
+    if (count($selectedProducts) === 0) {
+        $message = "Tidak ada produk yang dipilih. Silakan kembali ke keranjang.";
+        echo "<p>$message</p>";
+        exit;
+    }
+
 
     // Fungsi untuk menghasilkan nomor pesanan unik
-    function generateOrderNumber($connection) {
+    function generateOrderNumber($connection)
+    {
         $date = date("Ymd");
         $query = "SELECT COUNT(*) AS order_count FROM orders WHERE DATE(order_date) = CURDATE()";
         $result = mysqli_query($connection, $query);
@@ -135,7 +149,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $message = "Email gagal dikirim. Error: {$mail->ErrorInfo}";
                 exit; // Menghentikan eksekusi jika ada error
             }
-
         } else {
             $message = "Error: " . mysqli_error($koneksi);
         }
@@ -150,15 +163,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/shortcut.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="style/process_checkou.css">
+    <link rel="stylesheet" href="style/process_checkout.css">
     <title>sehatools</title>
 </head>
+
 <body>
     <header>
         <a href="index.php" class="logo"><img src="images/sehat.png" alt=""></a>
@@ -169,10 +184,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <ul>
                 <!-- <li><a class="nav" href="#home">Home</a></li> -->
-                <li><a class="nav" href="#product">Produk</a></li>
+                <li><a class="nav" href="products.php">Produk</a></li>
                 <!-- <li><a class="nav" href="#aboutus">About Us</a></li> -->
                 <li><a class="nav" href="order_histor.php">Lihat Pesanan</a></li>
-                <li><a class="nav" href="#contact">Kontak</a></li>
+                <li><a class="nav" href="index.php#contact">Kontak</a></li>
                 <!-- <li><a id="login" class="nav" href="./admin/start.php">Login sebagai Admin</a></li> -->
             </ul>
             <div class="menu-toggle">
@@ -183,18 +198,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </header>
-        <div class="container">
-            <h1 style="text-align: center; margin-bottom: 10px">Pesanan Anda Berhasil!</h1>
-            <?php if ($metode_pembayaran === 'cash_on_delivery'): ?>
-                <p>Pesanan Anda berhasil kami terima, cek email dari kami untuk melakukan cek pesanan.</p>
-            <?php else: ?>
-                <p>Pesanan Anda berhasil kami terima, cek email dari kami untuk melakukan konfirmasi pembayaran dan cek pesanan.</p>
-            <?php endif; ?>
-            <p>Nomor Pesanan: <strong><?php echo htmlspecialchars($orderNumber); ?></strong></p>
-            <!-- <p>Kode Unik: <strong><?php echo htmlspecialchars($unique_code); ?></strong></p> -->
-            <p>Total: Rp<?php echo number_format($total_harga, 0, ',', '.'); ?></p>
-            <p>Metode Pembayaran: <?php echo htmlspecialchars($metode_pembayaran); ?></p>
-            <!-- <a href="order_history.php" class="link">Cek Pesanan</a> -->
-        </div>
+    <div class="container">
+        <h1 style="text-align: center; margin-bottom: 10px">Pesanan Anda Berhasil!</h1>
+        <?php if ($metode_pembayaran === 'cash_on_delivery'): ?>
+            <p>Pesanan Anda berhasil kami terima, cek email dari kami untuk melakukan cek pesanan.</p>
+        <?php else: ?>
+            <p>Pesanan Anda berhasil kami terima, cek email dari kami untuk melakukan konfirmasi pembayaran dan cek pesanan.</p>
+        <?php endif; ?>
+        <p>Nomor Pesanan: <strong><?php echo htmlspecialchars($orderNumber); ?></strong></p>
+        <!-- <p>Kode Unik: <strong><?php echo htmlspecialchars($unique_code); ?></strong></p> -->
+        <p>Total: Rp<?php echo number_format($total_harga, 0, ',', '.'); ?></p>
+        <p>Metode Pembayaran: <?php echo htmlspecialchars($metode_pembayaran); ?></p>
+        <!-- <a href="order_history.php" class="link">Cek Pesanan</a> -->
+    </div>
 </body>
+
 </html>
